@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atmospheric Loss Calculator</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <p class="eyebrow">Impact Erosion Tool</p>
+        <h1>Atmospheric Loss Calculator</h1>
+        <p class="lede">
+          Compare atmospheric erosion from planetesimal impacts and giant impacts
+          using the prescriptions from your notes and notebook.
+        </p>
+      </section>
+
+      <section class="layout">
+        <aside class="panel">
+          <h2>Planet</h2>
+          <div class="grid">
+            <label>
+              <span>Planet mass (Earth masses)</span>
+              <input id="planetMassEarth" type="number" value="1" step="0.01" min="0.01" />
+            </label>
+            <label>
+              <span>Mean molecular weight</span>
+              <input id="meanMolecularWeight" type="number" value="28.97" step="0.01" min="0.1" />
+            </label>
+            <label>
+              <span>Atmospheric density at surface (kg/m³)</span>
+              <input id="atmosDensity" type="number" value="1.2" step="0.01" min="0.000001" />
+            </label>
+            <label>
+              <span>Atmospheric temperature (K)</span>
+              <input id="atmosTemperature" type="number" value="300" step="1" min="1" />
+            </label>
+          </div>
+          <div class="derived" id="planetSummary"></div>
+        </aside>
+
+        <article class="panel">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Planetesimal</p>
+                <h2>Planetesimal Impact Loss</h2>
+              </div>
+              <div class="segmented">
+                <button class="is-active" data-mode="single" id="singleModeBtn">Single impact</button>
+                <button data-mode="collective" id="collectiveModeBtn">Collective mass</button>
+              </div>
+            </div>
+
+            <div class="grid">
+              <label>
+                <span>Impactor density (kg/m³)</span>
+                <input id="planetesimalDensity" type="number" value="3000" step="10" min="1" />
+              </label>
+              <label>
+                <span>Impact velocity / escape velocity</span>
+                <input id="planetesimalVelocityRatio" type="number" value="1.2" step="0.01" min="0" />
+              </label>
+              <label>
+                <span>Model set</span>
+                <select id="planetesimalCoeffSet">
+                  <option value="shuvalov">Shuvalov et al. (2014)</option>
+                  <option value="sinclair">Sinclair & Wyatt (2021)</option>
+                </select>
+              </label>
+            </div>
+
+            <div id="singleInputs" class="grid mode-block">
+              <label>
+                <span>Single impactor mass (kg)</span>
+                <input id="singleImpactorMass" type="number" value="1e12" step="1e10" min="1" />
+              </label>
+            </div>
+
+            <div id="collectiveInputs" class="grid mode-block is-hidden">
+              <label>
+                <span>Collective impactor mass (kg)</span>
+                <input id="collectiveMass" type="number" value="1e20" step="1e18" min="1" />
+              </label>
+              <label>
+                <span>Minimum diameter (m)</span>
+                <input id="diameterMin" type="number" value="1" step="1" min="0.000001" />
+              </label>
+              <label>
+                <span>Maximum diameter (m)</span>
+                <input id="diameterMax" type="number" value="300000" step="1000" min="1" />
+              </label>
+              <label>
+                <span>Differential index q</span>
+                <input id="powerLawIndex" type="number" value="2" step="0.1" min="0.1" />
+              </label>
+              <label>
+                <span>Integration bins</span>
+                <input id="collectiveBins" type="number" value="160" step="1" min="20" max="1200" />
+              </label>
+            </div>
+
+            <div class="actions">
+              <button id="calculatePlanetesimal">Calculate planetesimal loss</button>
+            </div>
+
+            <div id="planetesimalResults" class="results"></div>
+            <p class="note">
+              Collective mode uses a deterministic size-distribution integration,
+              not a random draw, so repeated calculations are stable.
+            </p>
+        </article>
+
+        <article class="panel">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Giant Impact</p>
+                <h2>Giant Impact Loss</h2>
+              </div>
+            </div>
+
+            <div class="grid">
+              <label>
+                <span>Impactor mass (Earth masses)</span>
+                <input id="giantMassEarth" type="number" value="0.05" step="0.001" min="0.000001" />
+              </label>
+              <label>
+                <span>Impact velocity / escape velocity</span>
+                <input id="giantVelocityRatio" type="number" value="1.5" step="0.01" min="0" />
+              </label>
+              <label>
+                <span>Impact parameter b</span>
+                <input id="impactParameter" type="number" value="0.2" step="0.01" min="0" max="1" />
+              </label>
+            </div>
+
+            <div class="actions">
+              <button id="calculateGiant">Calculate giant impact loss</button>
+            </div>
+
+            <div id="giantResults" class="results"></div>
+            <p class="note">
+              This section applies the Kegerreis-style giant impact scaling used in
+              your notebook and does not include thermal or XUV-driven loss.
+            </p>
+        </article>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
