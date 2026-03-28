@@ -10,10 +10,7 @@ const state = {
   planetesimalMode: "single",
 };
 
-const coeffSets = {
-  shuvalov: { A12: 1.4, Afr: 1.4, B12: 5.5, Bfr: 3.5, label: "Shuvalov et al. (2014)" },
-  sinclair: { A12: 1.4, Afr: 1.4, B12: 1.24, Bfr: 1.97, label: "Sinclair & Wyatt (2021)" },
-};
+const SINCLAIR_COEFFS = { A12: 1.4, Afr: 1.4, B12: 1.24, Bfr: 1.97, label: "Sinclair & Wyatt (2021)" };
 
 function $(id) {
   return document.getElementById(id);
@@ -117,7 +114,7 @@ function computeSinglePlanetesimal(planet, options) {
   const mass = options.mass;
   const density = options.density;
   const velocityRatio = options.velocityRatio;
-  const coeff = coeffSets[options.coeffSet];
+  const coeff = SINCLAIR_COEFFS;
 
   if (!Number.isFinite(mass) || mass <= 0) throw new Error("Single impactor mass must be positive.");
   if (!Number.isFinite(density) || density <= 0) throw new Error("Impactor density must be positive.");
@@ -164,15 +161,15 @@ function computeSinglePlanetesimal(planet, options) {
     mass,
     diameter,
     velocity,
-    velocityRatio,
-    xi,
-    chi,
-    H12,
-    Hfr,
-    regime,
-    atmosphericLoss,
-    lossFraction: clampPositive(atmosphericLoss / planet.atmosphereMass),
-    coefficientLabel: coeff.label,
+      velocityRatio,
+      xi,
+      chi,
+      H12,
+      Hfr,
+      regime,
+      atmosphericLoss,
+      lossFraction: clampPositive(atmosphericLoss / planet.atmosphereMass),
+      coefficientLabel: coeff.label,
   };
 }
 
@@ -235,7 +232,6 @@ function computeCollectivePlanetesimal(planet, options) {
       mass,
       density,
       velocityRatio,
-      coeffSet: options.coeffSet,
     });
 
     expectedImpactors += count;
@@ -380,7 +376,6 @@ function calculatePlanetesimal() {
     const shared = {
       density: readNumber("planetesimalDensity"),
       velocityRatio: readNumber("planetesimalVelocityRatio"),
-      coeffSet: $("planetesimalCoeffSet").value,
     };
 
     if (state.planetesimalMode === "single") {

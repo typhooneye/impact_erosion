@@ -5,18 +5,19 @@
 body {
   margin: 0;
   color: #111;
-  background: #fff;
+  background: #fcfcfc;
   font-family: Arial, sans-serif;
+  line-height: 1.45;
 }
 
 .page {
-  width: min(1100px, calc(100% - 32px));
+  width: min(1240px, calc(100% - 40px));
   margin: 0 auto;
-  padding: 24px 0 40px;
+  padding: 28px 0 48px;
 }
 
 .hero {
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .eyebrow {
@@ -34,52 +35,60 @@ p {
 }
 
 h1 {
-  margin-bottom: 10px;
-  font-size: 2rem;
+  margin-bottom: 12px;
+  font-size: 2.1rem;
   line-height: 1.2;
 }
 
 .lede {
-  max-width: 800px;
+  max-width: 760px;
   color: #444;
-  line-height: 1.5;
+  margin-bottom: 0;
 }
 
 .layout {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+  gap: 20px;
   align-items: start;
 }
 
 .panel {
-  border: 1px solid #d9d9d9;
-  border-radius: 4px;
-  padding: 16px;
+  border: 1px solid #dadada;
+  border-radius: 8px;
+  padding: 20px;
+  background: #fff;
 }
 
 .section-head {
   display: flex;
   justify-content: space-between;
-  gap: 16px;
+  gap: 18px;
   align-items: flex-start;
-  margin-bottom: 14px;
+  margin-bottom: 18px;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
+  gap: 16px;
 }
 
 label {
   display: grid;
-  gap: 8px;
+  gap: 6px;
 }
 
 label span {
-  color: #444;
+  color: #333;
   font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.field-note {
+  color: #666;
+  font-size: 0.78rem;
+  line-height: 1.35;
 }
 
 input,
@@ -91,9 +100,9 @@ button {
 input,
 select {
   width: 100%;
-  border: 1px solid #c8c8c8;
-  border-radius: 4px;
-  padding: 8px 10px;
+  border: 1px solid #cfcfcf;
+  border-radius: 6px;
+  padding: 9px 11px;
   background: #fff;
   color: #111;
 }
@@ -109,12 +118,13 @@ button:focus {
   display: inline-flex;
   gap: 6px;
   padding: 0;
+  flex-wrap: wrap;
 }
 
 .segmented button,
 .actions button {
-  border: 1px solid #c8c8c8;
-  border-radius: 4px;
+  border: 1px solid #cfcfcf;
+  border-radius: 6px;
   cursor: pointer;
 }
 
@@ -122,26 +132,45 @@ button:focus {
   padding: 8px 12px;
   background: #fff;
   color: #333;
+  white-space: nowrap;
+  display: grid;
+  gap: 2px;
+  text-align: left;
 }
 
 .segmented button.is-active {
-  background: #eee;
+  background: #efefef;
   color: #111;
 }
 
+.segmented button span {
+  display: block;
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.segmented button small {
+  display: block;
+  color: #666;
+  font-size: 0.73rem;
+  line-height: 1.2;
+  white-space: normal;
+}
+
 .actions {
-  margin-top: 16px;
+  margin-top: 18px;
 }
 
 .actions button {
-  padding: 8px 12px;
-  background: #f3f3f3;
+  padding: 10px 14px;
+  background: #f4f4f4;
   color: #111;
   font-weight: 600;
 }
 
 .mode-block {
-  margin-top: 14px;
+  margin-top: 16px;
 }
 
 .is-hidden {
@@ -151,13 +180,13 @@ button:focus {
 .results {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-  margin-top: 16px;
+  gap: 14px;
+  margin-top: 18px;
 }
 
 .card {
-  padding: 12px;
-  border-radius: 4px;
+  padding: 14px;
+  border-radius: 6px;
   background: #fafafa;
   border: 1px solid #e0e0e0;
 }
@@ -168,27 +197,59 @@ button:focus {
 }
 
 .value {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 700;
+  margin-bottom: 4px;
 }
 
 .subvalue {
   color: #555;
-  font-size: 0.92rem;
-  line-height: 1.5;
+  font-size: 0.88rem;
+  line-height: 1.45;
 }
 
 .note,
 .derived {
-  margin-top: 16px;
+  margin-top: 18px;
   color: #555;
-  font-size: 0.92rem;
-  line-height: 1.6;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.calc-block {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid #e0e0e0;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.calc-block strong {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.calc-block ol {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.calc-block li + li {
+  margin-top: 6px;
 }
 
 .derived {
   padding-top: 14px;
   border-top: 1px solid #e0e0e0;
+}
+
+.panel h2 {
+  margin-bottom: 6px;
+  font-size: 1.25rem;
+}
+
+.panel .section-head p {
+  margin-bottom: 6px;
 }
 
 @media (max-width: 960px) {
