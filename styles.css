@@ -252,6 +252,14 @@ button:focus {
   margin-bottom: 6px;
 }
 
+.site-footer {
+  margin-top: 24px;
+  color: #666;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
 @media (max-width: 960px) {
   .layout {
     grid-template-columns: 1fr;
